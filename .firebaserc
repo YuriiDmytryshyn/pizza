@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "july-ca08d": {
+      "hosting": {
+        "pizza": [
+          "july-ca08d"
+        ]
+      }
+    }
+  }
+}

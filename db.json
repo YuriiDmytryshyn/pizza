@@ -1,0 +1,72 @@
+{
+  "blogs": [
+    {
+      "title": "asc",
+      "text": "dssd",
+      "image": "https://firebasestorage.googleapis.com/v0/b/july-ca08d.appspot.com/o/images%2FEq_it-na_pizza-margherita_sep2005_sml.jpg?alt=media&token=4eb9d6d8-b2d8-49d1-b0ff-fba6a873c050",
+      "date": "2020-11-22T11:09:23.123Z",
+      "author": "sdfsdf",
+      "id": 1
+    },
+    {
+      "title": "sdg",
+      "text": "sdgsd",
+      "image": "https://firebasestorage.googleapis.com/v0/b/july-ca08d.appspot.com/o/images%2FEq_it-na_pizza-margherita_sep2005_sml.jpg?alt=media&token=b8d28264-1d84-4bf5-9810-66fc3631f53b",
+      "date": "2020-11-24T16:18:02.117Z",
+      "author": "sdg",
+      "id": 2
+    }
+  ],
+  "categories": [
+    {
+      "name": "pizza",
+      "id": 1
+    },
+    {
+      "name": "saled",
+      "id": 2
+    },
+    {
+      "name": "drinks",
+      "id": 3
+    }
+  ],
+  "products": [
+    {
+      "category": {
+        "name": "pizza",
+        "id": 1
+      },
+      "name": "Пицца La П’єц",
+      "description": "соус томатный, ветчина, баварские колбаски, сыр моцарелла, колбаса салями, прошутто.",
+      "price": 177,
+      "image": "https://firebasestorage.googleapis.com/v0/b/july-ca08d.appspot.com/o/images%2FLA-P_yets-1.png?alt=media&token=64727d25-10e2-48ce-b9f3-3e52541511cf",
+      "count": 1,
+      "id": 1
+    },
+    {
+      "category": {
+        "name": "saled",
+        "id": 2
+      },
+      "name": "Салат Цезарь с жаренным куриным филе",
+      "description": "Салат айсберг, помидоры, куриное мясо, сыр пармезан, перепелинные яйца, ароматные сухарики и фирменная заправка - соус «Цезарь».",
+      "price": 135,
+      "image": "https://firebasestorage.googleapis.com/v0/b/july-ca08d.appspot.com/o/images%2FTSezar-z-kurkoyu.png?alt=media&token=7162d6f1-19d4-492c-8139-f25dbf3c6440",
+      "count": 1,
+      "id": 2
+    },
+    {
+      "category": {
+        "name": "drinks",
+        "id": 3
+      },
+      "name": "Апельсиновый нектар с мякотью",
+      "description": "Апельсиновый нектар с мякотью, 1 л, ТМ “RICH”",
+      "price": 42,
+      "image": "https://firebasestorage.googleapis.com/v0/b/july-ca08d.appspot.com/o/images%2Frich_orange.jpg?alt=media&token=20620244-07a6-497a-a3f2-156e4937af47",
+      "count": 1,
+      "id": 3
+    }
+  ]
+}
