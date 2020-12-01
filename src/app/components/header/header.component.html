@@ -21,17 +21,22 @@
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="[ '/about' ]">about</a>
                 </li>
-                <li *ngIf="Admin" class="nav-item">
+                <li *ngIf="isAdmin" class="nav-item">
                     <a class="nav-link" [routerLink]="[ '/admin' ]">admin</a>
                 </li>
             </ul>
             <div class="basket">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
+                        <a *ngIf="isProfile" class="nav-link" [routerLink]="[ '/profile' ]">
+                            <img class="basketImg" [attr.src]="profileImg" alt="profile">
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link">
-                            <img ng *ngIf="!Login" class="basketImg" (click)="signUpModal(singUp)"
+                            <img *ngIf="!isLogin" class="basketImg" (click)="signUpModal(singUp)"
                                 src="assets/images/door-closed-solid.svg" alt="signUp">
-                            <img ng *ngIf="Login" class="basketImg" (click)="signOutModal(signOutTemplate)"
+                            <img *ngIf="isLogin" class="basketImg" (click)="signOutModal(signOutTemplate)"
                                 src="assets/images/door-open-solid.svg" alt="signUp"></a>
                     </li>
                     <li class="nav-item">

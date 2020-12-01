@@ -19,8 +19,10 @@ export class HeaderComponent implements OnInit {
   modalRef: BsModalRef;
   userEmail: string;
   userPassword: string;
-  Login: boolean;
-  Admin: boolean;
+  profileImg = 'assets/images/profile-user.svg';
+  isLogin = false;
+  isAdmin = false;
+  isProfile = false;
 
   constructor(
     private categoryService: CategiriesService,
@@ -33,8 +35,34 @@ export class HeaderComponent implements OnInit {
     this.getCategories();
     this.checkMyBasket();
     this.getLocalProducts();
-    this.ifLogin();
+    this.cheackLocalUser();
+    this.checkIfUserLogin()
   }
+
+  private cheackLocalUser(): void {
+    if (localStorage.getItem('user')) {
+      let currentUser = JSON.parse(localStorage.getItem('user'));
+      if (currentUser.role === 'admin' && currentUser != null) {
+        this.isLogin = true;
+        this.isAdmin = true;
+        this.isProfile = false;
+      } else if (currentUser.role === 'user' && currentUser != null) {
+        this.isLogin = true;
+        this.isAdmin = false;
+        this.isProfile = true;
+      }
+    } else {
+      this.isLogin = false;
+      this.isAdmin = false;
+      this.isProfile = false;
+    }
+  };
+
+  private checkIfUserLogin(): void {
+    this.authService.cheackSignIn.subscribe(() => {
+      this.cheackLocalUser();
+    })
+  };
 
   private checkMyBasket(): void {
     this.orderService.basket.subscribe(
@@ -54,7 +82,7 @@ export class HeaderComponent implements OnInit {
 
   private getTotal(products: Array<IProduct>): number {
     return products.reduce((total, prod) => total + (prod.price * prod.count), 0);
-  }
+  };
 
   private getCategories(): void {
     this.categoryService.getCategories().subscribe(
@@ -65,6 +93,8 @@ export class HeaderComponent implements OnInit {
   };
 
   signUpModal(template: TemplateRef<any>): void {
+    this.userEmail = '';
+    this.userPassword = '';
     this.modalRef = this.modalService.show(template);
   };
 
@@ -86,22 +116,8 @@ export class HeaderComponent implements OnInit {
 
   signOutUser(): void {
     this.authService.signOut();
-    this.Admin = false;
-    this.Login = false;
   };
 
-  private ifLogin(): void {
-    if (localStorage.getItem('user')) {
-      let currentUser = JSON.parse(localStorage.getItem('user'));
-      if (currentUser.role === 'admin' && currentUser != null) {
-        this.Admin = true;
-        this.Login = true;
-      } else if (currentUser.role === 'user' && currentUser != null) {
-        this.Admin = false;
-        this.Login = true;
-      }
-    }
-  };
 
 
 

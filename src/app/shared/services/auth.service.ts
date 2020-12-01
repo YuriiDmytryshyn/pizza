@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-// import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   localStorageUser: any;
+  cheackSignIn: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private http: HttpClient,
@@ -32,6 +33,7 @@ export class AuthService {
             collection.get()
               .then(user => {
                 localStorage.setItem('user', JSON.stringify(user.data()));
+                this.cheackSignIn.next(true);
                 this.router.navigateByUrl('profile');
               })
           })
@@ -46,6 +48,7 @@ export class AuthService {
           .onSnapshot(snap => {
             snap.forEach(user => {
               localStorage.setItem('user', JSON.stringify(user.data()));
+              this.cheackSignIn.next(true);
               this.localStorageUser = JSON.parse(localStorage.getItem('user'));
               if (this.localStorageUser.role === 'admin') {
                 this.router.navigateByUrl('admin');
@@ -61,6 +64,7 @@ export class AuthService {
     this.auth.signOut()
       .then(() => {
         localStorage.removeItem('user');
+        this.cheackSignIn.next(false);
         this.router.navigateByUrl('home');
       })
   };
